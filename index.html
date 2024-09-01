@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./style.css">
+  <link rel="icon" type="image/png" sizes="32x32" href="./assets/images/favicon-32x32.png">
+
+  <title>Frontend Mentor | Contact form</title>
+
+</head>
+
+<body>
+  <main>
+    <!--SUBMISSION SUCCESS ALERT-->
+    <div class="submission-success-alert hidden">
+      <div class="submission-success-alert--row">
+        <img class="submission-success-alert__img" src="assets/images/icon-success-check.svg" alt="success">
+        <p class="submission-success-alert__text-1"><strong>Message Sent!</strong></p>
+      </div>
+      <p class="submission-success-alert__text-2">Thanks for completing the form. We'll be in touch soon!</p>
+    </div>
+
+    <!--CONTACT FORM-->
+    <form class="contact-form" action="#">
+      <!--TITLE-->
+      <h1 class="contact-form__title">Contact Us</h1>
+      <!--NAME FIELDSET-->
+      <fieldset class="contact-form__name contact-form--row contact-form__fieldset">
+        <div class="contact-form--column">
+          <label for="name-1">First Name</label>
+          <input type="text" class="contact-form__input-txt--borders-default" id="name-1">
+          <p class="error-text hidden">This field is required</p>
+          <p class="error-text hidden">Every word starts with [A-Z] only, next chars must
+            be
+            [a-z], no special symbols, space is
+            only allowed for links between names (double name, etc.).</p>
+        </div>
+        <div class="contact-form--column">
+          <label for="name-2">Last Name</label>
+          <input type="text" class="contact-form__input-txt--borders-default" id="name-2">
+          <p class="error-text hidden">This field is required</p>
+          <p class="error-text hidden">Every word starts with [A-Z] only, next chars must
+            be
+            [a-z], no special symbols, space is
+            only allowed for links between surnames (double surname, etc.).</p>
+        </div>
+      </fieldset>
+      <!--EMAIL FIELDSET-->
+      <fieldset class="contact-form__email contact-form--column contact-form__fieldset">
+        <label for="email">Email Address</label>
+        <input type="email" class="contact-form__input-txt--borders-default" id="email">
+        <p class=" error-text hidden">This field is required</p>
+        <p class=" error-text hidden">Please enter a valid email address</p>
+      </fieldset>
+      <!--QUERY TYPE FIELDSET-->
+      <fieldset class="contact-form__query-type contact-form__fieldset contact-form--column">
+        <label for="enquiry-requset">Query Type</label>
+        <div class="contact-form--row radio-buttons-container">
+          <div class="contact-form--row contact-form__radio-option" data-radio-id="enquiry">
+            <input id="enquiry" type="radio" name="query" value="enquiry">
+            <label class="exclude" for="enquiry">General Enquiry</label>
+          </div>
+          <div class="contact-form--row contact-form__radio-option" data-radio-id="request">
+            <input id="request" type="radio" name="query" value="request">
+            <label class="exclude" for="request">Support Request</label>
+          </div>
+        </div>
+        <p class="error-text hidden">Please select a query type</p>
+      </fieldset>
+      <!--MESSAGE FIELDSET-->
+      <fieldset class="contact-form__message contact-form--column contact-form__fieldset">
+        <label for="message">Message</label>
+        <textarea class="contact-form__input-txt--borders-default" id="message"></textarea>
+        <p class="error-text hidden">This field is required</p>
+      </fieldset>
+      <!--CONSENT FIELDSET-->
+      <fieldset class="contact-form__consent contact-form--column contact-form__fieldset">
+        <div class="contact-form--row">
+          <input id="consent" type="checkbox" name="consent" value="consent">
+          <label for="consent">I consent to being contacted by the team</label>
+        </div>
+        <p class="error-text hidden">To submit this form, please consent to being contacted
+        </p>
+      </fieldset>
+      <!--SUBMIT BUTTON-->
+      <button class="contact-form__submit" type="submit" aria-label="submit">Submit</button>
+
+    </form>
+  </main>
+  <script src="script.js"></script>
+</body>
+
+</html>
