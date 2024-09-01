@@ -50,6 +50,7 @@ main {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
+	max-height: 100%;
 }
 
 /* SUBMISSION SUCCESS ALERT */
@@ -87,7 +88,6 @@ main {
 	gap: 1.5rem;
 	border-radius: 13px;
 	background-color: var(--white);
-	max-height: 100%;
 }
 
 .contact-form__title {
@@ -231,6 +231,11 @@ label[for="consent"] {
 	margin-left: 4px;
 	width: 83%;
 	user-select: none;
+}
+
+.contact-form__consent .error-text {
+	margin-left: 2.3rem;
+	width: 90%;
 }
 
 /* SUBMIT */

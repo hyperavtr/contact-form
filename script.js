@@ -60,6 +60,10 @@ function showNextElementError(contactField) {
   contactField.nextElementSibling.classList.remove("hidden");
   contactField.classList.add("error-border");
 }
+function hideNextElementError(contactField) {
+  contactField.nextElementSibling.classList.add("hidden");
+  contactField.classList.remove("error-border");
+}
 function showLastPossibleError(ErrorContainer) {
   const showErrorInThere = document.querySelector(ErrorContainer);
   showErrorInThere.lastElementChild.classList.remove("hidden");
@@ -72,15 +76,28 @@ function hideLastPossibleError(ErrorContainer) {
 //MOUSE OVER INPUTS
 let ifItWasChanged = false;
 const mouseOverInputs = (e) => {
-  if (
-    !e.target.classList.contains("error-border") &&
-    !e.target.classList.contains("success-border") &&
-    !ifItWasChanged
-  ) {
-    e.target.classList.add("success-border--hover");
-    ifItWasChanged = true;
+  if (e.target.type == "text") {
+    if (
+      !e.target.classList.contains("error-border") &&
+      !e.target.classList.contains("success-border") &&
+      !ifItWasChanged
+    ) {
+      e.target.classList.add("success-border--hover");
+      ifItWasChanged = true;
+    }
+  } else {
+    if (
+      !e.target.classList.contains("error-border") &&
+      !e.target.classList.contains("success-border") &&
+      !ifItWasChanged &&
+      e.target.nextElementSibling.classList.contains("hidden")
+    ) {
+      e.target.classList.add("success-border--hover");
+      ifItWasChanged = true;
+    }
   }
 };
+
 //MOUSE OUT OF INPUTS
 const mouseOutInputs = (e) => {
   if (!e.target.classList.contains("error-border") && ifItWasChanged) {
@@ -115,6 +132,7 @@ const unfocus = (e) => {
   if (regexEmpty.test(e.target.value)) {
     hideAllowedSymbolsError(e);
     e.target.classList.remove("success-border");
+    e.target.classList.remove("success-border--hover");
     return showRequiredError(e);
   }
 
