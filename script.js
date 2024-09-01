@@ -254,6 +254,13 @@ submitBtn.addEventListener("click", (e) => {
   submit(e), e.preventDefault();
 });
 
+submitBtn.addEventListener("click", () => {
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth",
+  });
+});
+
 //RESET
 const reset = () => {
   //NAME1&2
@@ -283,7 +290,7 @@ const reset = () => {
 //CALL RESET
 reset();
 
-//RESIZE
+//RESIZE VIA MEDIA
 const media664vw = window.matchMedia("(min-width:664px)");
 const media801vh = window.matchMedia("(max-height:801px)");
 
