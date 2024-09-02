@@ -139,8 +139,8 @@ const unfocus = (e) => {
 
   const regexAllowed =
     e.target.id === "email"
-      ? /^[\w\d]+[@]+[a-z]+\.+[a-z]{2,3}$/
-      : /^[A-Z][a-z]*(?:\s[A-Z][a-z]*)*$/;
+      ? /^[\W\w\d]+[@]+[a-z]+\.[a-z]{2,3}$/
+      : /^([\u0410-\u042FҐЄЇІ]|[A-Z])([a-z]|[\u0400-\u04FFґєїі']+)*(?:\s[A-Z][a-z]*)*$/;
 
   if (regexAllowed.test(e.target.value)) {
     hideRequiredError(e);
