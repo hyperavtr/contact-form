@@ -2,6 +2,7 @@
 // SUBMISSION ALERT
 const successAlert = document.querySelector(".submission-success-alert");
 //FORM
+mainContContactForm = document.querySelector(".contact-form__main-container");
 contactForm = document.querySelector(".contact-form");
 // INPUTS
 const inputText = document.querySelectorAll("input[type=text]");
@@ -273,7 +274,7 @@ const submit = () => {
   } else {
     //SHOW SUCCESS ALERT, RESET ALL FIELDS, DELETE MARGIN-TOP
     successAlert.classList.remove("hidden");
-    contactForm.style.marginTop = "0";
+    mainContContactForm.style.paddingTop = "0";
     reset();
     //SCROLL TO THE TOP OF THE PAGE
     window.scrollTo({
@@ -302,7 +303,7 @@ const submit = () => {
       successAlert.classList.remove("fade-success-alert");
 
       if (window.innerWidth <= 818) {
-        contactForm.style.marginTop = "2.2rem";
+        mainContContactForm.style.paddingTop = "2.2rem";
       }
     }
 
@@ -356,9 +357,9 @@ const media801px = window.matchMedia("(max-height:801px)");
 const resizeVerticalMargin = (e) => {
   if (e.matches) {
     if (!successAlert.classList.contains("hidden")) {
-      contactForm.style.marginTop = "2.2";
+      mainContContactForm.style.paddingTop = "2.2";
     } else {
-      contactForm.style.marginTop = "0";
+      mainContContactForm.style.paddingTop = "0";
     }
   }
 };
@@ -366,7 +367,7 @@ media801vh.addEventListener("change", resizeVerticalMargin);
 media664vw.addEventListener("change", resizeVerticalMargin); */
 
 //CHANGE BODY'S MARGIN IF CONTAINER GETS BIGGER
-const body = document.querySelector("body");
+/* const body = document.querySelector("body");
 
 const resizeObserver = new ResizeObserver((entries) => {
   for (let entry of entries) {
@@ -388,4 +389,4 @@ const resizeObserver = new ResizeObserver((entries) => {
   }
 });
 
-resizeObserver.observe(contactForm);
+resizeObserver.observe(contactForm); */
