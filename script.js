@@ -210,60 +210,106 @@ inputRadio.forEach((radio) => {
 
 //SUBMIT
 const submit = () => {
-  let isConditionsFullfiled = true;
+  let isConditionsFulfilled = true;
+  //NAME1&NAME2
   inputText.forEach((input) => {
     if (!input.classList.contains("success-border")) {
       showNextElementError(input);
-      isConditionsFullfiled = false;
+      isConditionsFulfilled = false;
     }
     input.classList.remove("success-border--hover");
   });
+  //EMAIL
   if (!inputEmail.classList.contains("success-border")) {
     showNextElementError(inputEmail);
-    isConditionsFullfiled = false;
+    isConditionsFulfilled = false;
   }
   inputEmail.classList.remove("success-border--hover");
-  let isRadioConditionFullfiled = true;
+  //RADIO
+  let isRadioConditionFulfilled = true;
   for (const radio of inputRadio) {
     if (radio.checked) {
       hideLastPossibleError(".contact-form__query-type");
+      isRadioConditionFulfilled = true;
       break;
     } else if (!radio.checked) {
       showLastPossibleError(".contact-form__query-type");
-      isRadioConditionFullfiled = false;
+      isRadioConditionFulfilled = false;
     }
   }
-
+  //MESSAGE
   if (regexEmpty.test(inputMessage.value)) {
+    inputMessage.classList.add("error-border");
     showLastPossibleError(".contact-form__message");
-    isConditionsFullfiled = false;
+    isConditionsFulfilled = false;
   }
-
-  let isConsentConditionFullfiled = true;
+  //CONSENT
+  let isConsentConditionFulfilled = true;
   if (!checkboxConsent.checked) {
     showLastPossibleError(".contact-form__consent");
-    isConsentConditionFullfiled = false;
+    isConsentConditionFulfilled = false;
   } else {
     hideLastPossibleError(".contact-form__consent");
   }
-
+  //IF CONDITIONS NOT FULFILLED
   if (
-    !isConditionsFullfiled ||
-    !isRadioConditionFullfiled ||
-    !isConsentConditionFullfiled
+    !isConditionsFulfilled ||
+    !isRadioConditionFulfilled ||
+    !isConsentConditionFulfilled
   ) {
+    //HIDE SUCCESS ALERT AND SCROLL TO THE FURTHEST ERROR
     successAlert.classList.add("hidden");
-    contactForm.style.marginTop = "2.2rem";
-  } else {
-    if (successAlert.classList.contains("show-success-alert")) {
-      successAlert.classList.remove("show-success-alert");
+    const ErrorElements = document.querySelectorAll(".error-text");
+    for (let element of ErrorElements) {
+      if (!element.classList.contains("hidden")) {
+        element.scrollIntoView({
+          behavior: "smooth",
+          block: "center",
+        });
+        break;
+      }
     }
+    //IF CONDITIONS FULFILLELD
+  } else {
+    //SHOW SUCCESS ALERT, RESET ALL FIELDS, DELETE MARGIN-TOP
     successAlert.classList.remove("hidden");
     contactForm.style.marginTop = "0";
     reset();
-    setTimeout(() => {
+    //SCROLL TO THE TOP OF THE PAGE
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+    //ANIMATION
+    function delay(ms) {
+      return new Promise((resolve) => setTimeout(resolve, ms));
+    }
+
+    async function runSuccessAnimation() {
+      await delay(500);
       successAlert.classList.add("show-success-alert");
-    }, 500);
+
+      await delay(1000);
+      successAlert.classList.add("move-success-alert");
+
+      await delay(100);
+      successAlert.classList.add("fade-success-alert");
+
+      await delay(1500);
+      successAlert.classList.add("hidden");
+      successAlert.classList.remove("show-success-alert");
+      successAlert.classList.remove("move-success-alert");
+      successAlert.classList.remove("fade-success-alert");
+
+      if (window.innerWidth <= 818) {
+        contactForm.style.marginTop = "2.2rem";
+      }
+    }
+
+    // RUN THE ANIMATION
+    runSuccessAnimation().catch((error) => {
+      console.error("Error:", error);
+    });
   }
 };
 
@@ -272,12 +318,7 @@ submitBtn.addEventListener("click", (e) => {
   submit(e), e.preventDefault();
 });
 
-submitBtn.addEventListener("click", () => {
-  window.scrollTo({
-    top: 0,
-    behavior: "smooth",
-  });
-});
+submitBtn.addEventListener("click", () => {});
 
 //RESET
 const reset = () => {
@@ -309,20 +350,42 @@ const reset = () => {
 reset();
 
 //RESIZE VIA MEDIA
-const media664vw = window.matchMedia("(min-width:664px)");
-const media801vh = window.matchMedia("(max-height:801px)");
+/* const media664px = window.matchMedia("(min-width:664px)");
+const media801px = window.matchMedia("(max-height:801px)");
 
-function resizeVerticalMargin(e) {
+const resizeVerticalMargin = (e) => {
   if (e.matches) {
     if (!successAlert.classList.contains("hidden")) {
+      contactForm.style.marginTop = "2.2";
+    } else {
       contactForm.style.marginTop = "0";
-      contactForm.style.marginBottom = "2.2rem";
-    }
-  } else if (!e.matches) {
-    if (!successAlert.classList.contains("hidden")) {
-      contactForm.style.marginBottom = "0";
     }
   }
-}
+};
 media801vh.addEventListener("change", resizeVerticalMargin);
-media664vw.addEventListener("change", resizeVerticalMargin);
+media664vw.addEventListener("change", resizeVerticalMargin); */
+
+//CHANGE BODY'S MARGIN IF CONTAINER GETS BIGGER
+const body = document.querySelector("body");
+
+const resizeObserver = new ResizeObserver((entries) => {
+  for (let entry of entries) {
+    if (entry.contentRect.height > 854 && entry.contentRect.width > 695) {
+      body.style.margin = "5rem 0";
+    } else if (
+      entry.contentRect.height > 826 &&
+      entry.contentRect.width > 695
+    ) {
+      body.style.margin = "4rem 0";
+    } else if (
+      entry.contentRect.height > 769 &&
+      entry.contentRect.width > 695
+    ) {
+      body.style.margin = "2rem 0";
+    } else {
+      body.style.margin = "0";
+    }
+  }
+});
+
+resizeObserver.observe(contactForm);

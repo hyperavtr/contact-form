@@ -46,11 +46,11 @@ body {
 
 /*MAIN CONTAINER*/
 main {
-	width: min(51rem, 92.5%);
+	width: min(51rem, 94%);
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	max-height: 100%;
+	height: auto;
 }
 
 /* SUBMISSION SUCCESS ALERT */
@@ -88,6 +88,7 @@ main {
 	gap: 1.5rem;
 	border-radius: 13px;
 	background-color: var(--white);
+	overflow: auto;
 }
 
 .contact-form__title {
@@ -233,11 +234,6 @@ label[for="consent"] {
 	user-select: none;
 }
 
-.contact-form__consent .error-text {
-	margin-left: 2.3rem;
-	width: 90%;
-}
-
 /* SUBMIT */
 .contact-form__submit {
 	background-color: var(--green-600-medium);
@@ -279,13 +275,23 @@ input[type="radio"]:focus {
 	transform: scale(1);
 }
 
+.move-success-alert {
+	transition: 1s ease;
+	transform: translate(200px);
+}
+
+.fade-success-alert {
+	transition: 1.1s ease;
+	opacity: 0;
+}
+
 .error-border {
 	border-color: var(--red);
 }
 
 .error-text {
 	color: var(--red);
-	padding-bottom: 0.3rem;
+	/* padding-bottom: 0.3rem; */
 }
 
 .success-border--hover {
@@ -302,7 +308,7 @@ input[type="radio"]:focus {
 
 
 /* MEDIA */
-@media only screen and (max-width: 664px) {
+@media only screen and (max-width: 818px) {
 
 	.contact-form__name,
 	.radio-buttons-container {
@@ -323,6 +329,7 @@ input[type="radio"]:focus {
 	.contact-form {
 		margin: 2.2rem 0;
 		padding: 1.5rem;
+		width: 98%;
 	}
 
 	.contact-form__title {
@@ -336,21 +343,9 @@ input[type="radio"]:focus {
 	.contact-form__consent {
 		margin: 1rem 0;
 	}
-}
 
-@media only screen and (max-height: 801px) {
-
-	html,
-	body {
-		height: unset;
-	}
-
-	.contact-form {
-		margin: 2.2rem 0;
-	}
-
-	.submission-success-alert {
-		margin-top: 2.2rem;
-		line-height: 1.5rem;
+	.contact-form__consent .error-text {
+		margin-left: 2.3rem;
+		width: 90%;
 	}
 }
