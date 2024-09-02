@@ -32,6 +32,7 @@
 html,
 body {
 	height: 100%;
+
 }
 
 body {
@@ -40,7 +41,6 @@ body {
 	font-weight: 400;
 	display: flex;
 	justify-content: center;
-	align-items: center;
 	background-color: var(--green-200-lighter);
 }
 
@@ -49,8 +49,8 @@ main {
 	width: min(51rem, 94%);
 	display: flex;
 	flex-direction: column;
+	height: 100%;
 	align-items: center;
-	height: auto;
 }
 
 /* SUBMISSION SUCCESS ALERT */
@@ -79,6 +79,13 @@ main {
 	font-size: 1rem;
 }
 
+.contact-form__main-container {
+	display: flex;
+	align-items: center;
+	height: 100dvw;
+	width: 100%;
+}
+
 /*CONTACT FORM*/
 .contact-form {
 	padding: 2.3rem;
@@ -88,7 +95,6 @@ main {
 	gap: 1.5rem;
 	border-radius: 13px;
 	background-color: var(--white);
-	overflow: auto;
 }
 
 .contact-form__title {
@@ -324,6 +330,10 @@ input[type="radio"]:focus {
 	.submission-success-alert {
 		margin-top: 2.2rem;
 		line-height: 1.5rem;
+	}
+
+	.contact-form__main-container {
+		height: auto;
 	}
 
 	.contact-form {
