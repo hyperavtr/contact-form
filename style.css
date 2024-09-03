@@ -65,6 +65,7 @@ main {
 	position: absolute;
 	top: 1%;
 	z-index: 999;
+	opacity: 0.9;
 	/*animation*/
 	transform: scale(0);
 	transition: 0.5s ease;
@@ -281,7 +282,6 @@ input[type="radio"]:focus {
 .hidden {
 	display: none;
 }
-
 
 .show-success-alert {
 	transition: 0.4s ease;
