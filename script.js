@@ -252,7 +252,7 @@ const submit = () => {
   } else {
     hideLastPossibleError(".contact-form__consent");
   }
-  //IF CONDITIONS NOT FULFILLED
+  //IF THE CONDITIONS ARE NOT FULFILLED
   if (
     !isConditionsFulfilled ||
     !isRadioConditionFulfilled ||
@@ -270,11 +270,10 @@ const submit = () => {
         break;
       }
     }
-    //IF CONDITIONS FULFILLELD
+    //IF THE CONDITIONS ARE FULFILLELD
   } else {
     //SHOW SUCCESS ALERT, RESET ALL FIELDS, DELETE MARGIN-TOP
     successAlert.classList.remove("hidden");
-    mainContContactForm.style.paddingTop = "0";
     reset();
     //SCROLL TO THE TOP OF THE PAGE
     window.scrollTo({
@@ -287,24 +286,20 @@ const submit = () => {
     }
 
     async function runSuccessAnimation() {
-      await delay(500);
+      await delay(400);
       successAlert.classList.add("show-success-alert");
 
-      await delay(1000);
+      await delay(1400);
       successAlert.classList.add("move-success-alert");
 
-      await delay(100);
+      await delay(300);
       successAlert.classList.add("fade-success-alert");
 
-      await delay(1500);
+      await delay(400);
       successAlert.classList.add("hidden");
       successAlert.classList.remove("show-success-alert");
       successAlert.classList.remove("move-success-alert");
       successAlert.classList.remove("fade-success-alert");
-
-      if (window.innerWidth <= 818) {
-        mainContContactForm.style.paddingTop = "2.2rem";
-      }
     }
 
     // RUN THE ANIMATION
