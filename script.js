@@ -258,10 +258,9 @@ const submit = () => {
     !isRadioConditionFulfilled ||
     !isConsentConditionFulfilled
   ) {
-    //HIDE SUCCESS ALERT AND SCROLL TO THE FURTHEST ERROR
-    successAlert.classList.add("hidden");
-    const ErrorElements = document.querySelectorAll(".error-text");
-    for (let element of ErrorElements) {
+    //SCROLL TO THE FURTHEST ERROR
+    const errorElements = document.querySelectorAll(".error-text");
+    for (let element of errorElements) {
       if (!element.classList.contains("hidden")) {
         element.scrollIntoView({
           behavior: "smooth",
