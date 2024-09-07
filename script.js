@@ -313,8 +313,6 @@ submitBtn.addEventListener("click", (e) => {
   submit(e), e.preventDefault();
 });
 
-submitBtn.addEventListener("click", () => {});
-
 //RESET
 const reset = () => {
   //NAME1&2
@@ -343,44 +341,3 @@ const reset = () => {
 };
 //CALL RESET
 reset();
-
-//RESIZE VIA MEDIA
-/* const media664px = window.matchMedia("(min-width:664px)");
-const media801px = window.matchMedia("(max-height:801px)");
-
-const resizeVerticalMargin = (e) => {
-  if (e.matches) {
-    if (!successAlert.classList.contains("hidden")) {
-      mainContContactForm.style.paddingTop = "2.2";
-    } else {
-      mainContContactForm.style.paddingTop = "0";
-    }
-  }
-};
-media801vh.addEventListener("change", resizeVerticalMargin);
-media664vw.addEventListener("change", resizeVerticalMargin); */
-
-//CHANGE BODY'S MARGIN IF CONTAINER GETS BIGGER
-/* const body = document.querySelector("body");
-
-const resizeObserver = new ResizeObserver((entries) => {
-  for (let entry of entries) {
-    if (entry.contentRect.height > 854 && entry.contentRect.width > 695) {
-      body.style.margin = "5rem 0";
-    } else if (
-      entry.contentRect.height > 826 &&
-      entry.contentRect.width > 695
-    ) {
-      body.style.margin = "4rem 0";
-    } else if (
-      entry.contentRect.height > 769 &&
-      entry.contentRect.width > 695
-    ) {
-      body.style.margin = "2rem 0";
-    } else {
-      body.style.margin = "0";
-    }
-  }
-});
-
-resizeObserver.observe(contactForm); */
